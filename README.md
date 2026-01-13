@@ -1,46 +1,75 @@
-**Arduino Mini Dashboard**
+## Arduino Mini Dashboard
 
-A small collection of simple apps (sketches) you can deploy to a microcontroller board to show different information on a tiny display. This repository currently contains one app: `bitcoin_tracker`. More apps will be added over time; each app will live in its own folder with the files needed to deploy it.
+---
 
-**Hardware**:
-- **Board**: Any Arduino-compatible board that the sketch supports (e.g. Pro Mini, Uno, Nano, ESP32 — check the sketch for exact requirements).
-- **Display**: Small OLED or similar display as used by the sketches.
+A small collection of compact apps (Arduino/ESP sketches) that display useful information on a tiny OLED. The repository currently includes one app: the Bitcoin tracker. Additional apps will be added into their own folders as they are created.
 
-**Software / Tools**:
-- **Arduino IDE** (for manual upload) or
-- **arduino-cli** (for command-line build/upload).
+---
 
-```
+## Hardware
+
+- Board: any Arduino/ESP-compatible board supported by the sketch (examples: Pro Mini, Uno, Nano, ESP32). Check each sketch for exact requirements.
+- Display: SSD1306-compatible 128x64 OLED (I2C). Wiring and pins vary per sketch.
+
+---
+
+## Software & Tools
+
+- Arduino IDE — for manual editing and upload
+- arduino-cli — for building and uploading from the command line
+- Libraries (installed via Library Manager or `arduino-cli`): `ArduinoJson`, `Adafruit GFX Library`, `Adafruit SSD1306` (individual sketches list exact dependencies)
+
+---
+
+## Repository Structure
+
+Example layout:
+
+```text
 apps/
-	bitcoin_tracker/       # holds the sketch and assets for the bitcoin tracker
+	bitcoin_tracker/    # app folder with sketch and assets
+	another_app/        # future app
 ```
 
-Each app folder should contain the sketch (an `.ino` or `.cpp`/`.h` pair) and any required assets or libraries (or a `README.md` describing dependencies).
+Each app should contain its sketch (`.ino` or `.cpp`/`.h`) and a small `README.md` describing hardware, library dependencies, and any special setup.
 
-**Deploying the `bitcoin_tracker` app**
+---
+
+## Deploying the `bitcoin_tracker` App
 
 Arduino IDE:
 
-1. Open `bitcoin_ticker.ino` (or the sketch folder if it is moved into an app folder).
-2. Select the board and serial port in the IDE.
+1. Open the folder that contains `bitcoin_ticker.ino` in the IDE.
+2. Select the correct board and serial port.
 3. Click Upload.
 
 arduino-cli (example):
 
-1. Install `arduino-cli` and configure your board FQBN (follow Arduino CLI docs).
-2. From the sketch folder (the folder that contains the `.ino` file) run:
-
 ```bash
+cd path/to/bitcoin_ticker
 arduino-cli compile --fqbn <your_fqbn> .
 arduino-cli upload -p /dev/ttyUSB0 --fqbn <your_fqbn> .
 ```
 
-Replace `<your_fqbn>` with your board identifier (e.g. `arduino:avr:uno`) and `/dev/ttyUSB0` with your serial device.
+Replace `<your_fqbn>` with your board FQBN (for example `esp32:esp32:esp32dev`) and `/dev/ttyUSB0` with your serial device path.
 
-**Adding new apps**
-- Create a new folder at the repo root named for the app.
-- Place the sketch (`.ino`) and any assets there.
-- Add a short `README.md` inside the app folder describing hardware, dependencies, and upload notes.
+---
 
-**License**
-See the repository `LICENSE`.
+## Adding New Apps
+
+1. Create a new folder at the repository root named after the app.
+2. Add the sketch and required assets.
+3. Include a `README.md` in the app folder that lists hardware, libraries, and deploy instructions.
+
+---
+
+## Contributing
+
+- Open a pull request with a new app folder or improvements.
+- If a sketch requires non-standard libraries, include installation instructions or a `libraries.txt`.
+
+---
+
+## License
+
+See the repository `LICENSE` file.
