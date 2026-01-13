@@ -1,6 +1,8 @@
 ## Arduino Mini Dashboard
 
-A small collection of compact apps (Arduino/ESP sketches) that display useful information on a tiny OLED. The repository currently includes one app: the Bitcoin tracker. Additional apps will be added into their own folders as they are created.
+A small collection of compact apps (Arduino/ESP sketches) that display useful information on a tiny OLED. 
+
+The repository currently includes one app: the Bitcoin tracker. Additional apps will be added into their own folders as they are created.
 
 ---
 
