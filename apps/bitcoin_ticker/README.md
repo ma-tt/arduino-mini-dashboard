@@ -1,17 +1,4 @@
-**Bitcoin Ticker (bitcoin_ticker)**
-
-Small Arduino/ESP sketch that fetches the current Bitcoin price (USD) from the CoinGecko API and shows it on a small SSD1306 OLED.
-
-**Files**
-- `bitcoin_ticker.ino` — main sketch.
-
-**Hardware**
-- ESP32-compatible board (sketch uses `WiFi.h` and ESP time functions).
-- SSD1306-compatible 128x64 OLED (I2C). Default pins in the sketch: `OLED_SDA = 8`, `OLED_SCL = 9`, I2C address `0x3C`.
-
 ## Bitcoin Ticker (bitcoin_ticker)
-
----
 
 ### Overview
 
