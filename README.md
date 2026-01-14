@@ -63,4 +63,10 @@ Replace `<your_fqbn>` with your board FQBN (for example `esp32:esp32:esp32dev`) 
 
 ## License
 
-See the repository `LICENSE` file.
+[Snazzy Gallery](https://gitlab.com/ma-tt/snazzy-gallery) © 2025 by [ma-tt](https://gitlab.com/ma-tt) is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+
+---
+
+## Credits
+
+Created by [ma-tt](https://github.com/ma-tt).
