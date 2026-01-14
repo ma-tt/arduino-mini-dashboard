@@ -14,10 +14,8 @@ Small Arduino/ESP sketch that fetches the current Bitcoin price (USD) from the C
 
 ### Hardware
 
-- ESP32-compatible board (sketch uses `WiFi.h`, `WiFiClientSecure`, `HTTPClient`, and NTP/time functions from the ESP core).
- - SSD1306-compatible 128x64 OLED (I2C).
-	- Defaults in the sketch: `I2C_SDA = 8`, `I2C_SCL = 9` (original project wiring). Change these if your board uses different pins.
-	- Default I2C address: `0x3C` (change to `0x3D` in the sketch if your module uses that address).
+- ESP32-compatible board.
+- SSD1306-compatible 128x64 OLED (I2C).
 
 ---
 
@@ -55,8 +53,6 @@ const char* WIFI_SSID = "your_ssid";
 const char* WIFI_PASS = "your_password";
 ```
 
-- I2C pins & address: the sketch defaults to `I2C_SDA = 21`, `I2C_SCL = 22`, and `OLED_ADDRESS = 0x3C`. Edit these constants in the sketch to match your wiring.
-
 - Timezone: by default the sketch sets `TZ` to `EST5EDT` (Eastern Time with DST). Change the `setenv("TZ", ...)` line in the sketch to a POSIX TZ string for your timezone.
 
 - Fetch interval: default is 60 seconds. Adjust `FETCH_INTERVAL_MS` in the sketch if you want a different update frequency. Beware CoinGecko rate limits.
@@ -80,26 +76,6 @@ arduino-cli upload -p /dev/ttyUSB0 --fqbn <your_fqbn> .
 ```
 
 Replace `<your_fqbn>` with your board FQBN (example: `esp32:esp32:esp32dev`) and `/dev/ttyUSB0` with your serial device. Verify FQBNs with `arduino-cli board listall`.
-
----
-
-### Behavior & Notes
-
-- The sketch pulls price data from CoinGecko: `https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd`.
-- The code now uses a non-blocking `millis()`-based interval and attempts Wi‑Fi reconnects in the background.
-- HTTPS: `WiFiClientSecure` is used. The current code sets `client.setInsecure()` for convenience. Replace with proper CA validation or certificate pinning for secure deployments.
-- JSON buffer size: the sketch uses a 512-byte `StaticJsonDocument`. Increase this size if you expand parsed fields.
-- Display fallback: if the OLED is not detected the sketch will continue and print diagnostics to Serial at 115200 instead of halting.
-
----
-
-### Troubleshooting
-
-- OLED not detected: confirm wiring (SDA/SCL pins), the I2C address (0x3C vs 0x3D), and change `I2C_SDA`/`I2C_SCL` in the sketch if needed. The sketch logs a warning to Serial when the display is missing.
-- Wi‑Fi not connecting: verify credentials in `secrets.h` (or in the sketch) and that your board supports Wi‑Fi.
-- HTTP/HTTPS failures: ensure NTP/time is working (time is used for TLS) and that you have working internet access. If you remove `setInsecure()`, configure certificate validation correctly.
-- JSON parse errors: the API may return an error page or truncated response — check Serial output and increase `JSON_BUF_SIZE` if necessary.
-- Rate limits (HTTP 429): increase `FETCH_INTERVAL_MS` to reduce request frequency.
 
 ---
 
