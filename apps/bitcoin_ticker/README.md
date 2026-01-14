@@ -31,7 +31,6 @@ The sketch requires three third-party libraries installed from the Arduino Libra
 
 Notes:
 - `WiFi.h`, `WiFiClientSecure`, `HTTPClient.h`, and the NTP/time functions are provided by the ESP32 Arduino core — install the ESP32 board package in your IDE or `arduino-cli` before compiling.
-- The sketch uses `WiFiClientSecure` for HTTPS. The current code calls `client.setInsecure()` to skip certificate validation (convenient for testing). For production, replace this with proper CA or certificate pinning.
 
 arduino-cli example installs (exact library names):
 
