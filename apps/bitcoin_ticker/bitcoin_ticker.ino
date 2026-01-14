@@ -186,6 +186,10 @@ void setup() {
     tzset();
     configTime(0, 0, "time.google.com", "pool.ntp.org");
     delay(1000);
+
+    // Perform an initial fetch immediately after setup so the display shows current data
+    Serial.println("Performing initial price fetch...");
+    fetchAndDisplayPrice();
 }
 
 // ---------------- FETCH & LOOP ----------------
@@ -194,6 +198,39 @@ void fetchAndDisplayPrice() {
         Serial.println("Wi-Fi disconnected — skipping fetch");
         showErrorOnDisplay("Wi-Fi disconnected!");
         return;
+    }
+    // show fetching state on display
+    if (displayAvailable) {
+        safeDisplayClear();
+        display.setTextSize(1);
+        display.setCursor(0, 0);
+        display.println("Fetching...");
+        safeDisplayDisplay();
+    }
+
+    // ensure time is available (important for TLS)
+    struct tm timeinfo;
+    if (!getLocalTime(&timeinfo)) {
+        Serial.println("Waiting for NTP time...");
+        unsigned long tstart = millis();
+        while (millis() - tstart < 5000 && !getLocalTime(&timeinfo)) {
+            if (displayAvailable) {
+                safeDisplayClear();
+                display.setCursor(0, 0);
+                display.println("Waiting NTP...");
+                safeDisplayDisplay();
+            }
+            delay(250);
+        }
+        if (!getLocalTime(&timeinfo)) {
+            Serial.println("NTP time not available (TLS may fail)");
+            if (displayAvailable) {
+                safeDisplayClear();
+                display.setCursor(0, 0);
+                display.println("No NTP time");
+                safeDisplayDisplay();
+            }
+        }
     }
 
     WiFiClientSecure client;
@@ -207,12 +244,37 @@ void fetchAndDisplayPrice() {
     }
 
     int httpCode = http.GET();
+    Serial.println("HTTP code: " + String(httpCode));
+    if (displayAvailable) {
+        safeDisplayClear();
+        display.setTextSize(1);
+        display.setCursor(0, 0);
+        display.print("HTTP: ");
+        display.println(httpCode);
+        safeDisplayDisplay();
+    }
+
     if (httpCode == HTTP_CODE_OK) {
         String payload = http.getString();
+        Serial.println("Payload length: " + String(payload.length()));
         StaticJsonDocument<JSON_BUF_SIZE> doc;
         DeserializationError err = deserializeJson(doc, payload);
         if (err) {
             Serial.println("JSON parse error: " + String(err.c_str()));
+            // show a short parse error on the display and first part of payload
+            if (displayAvailable) {
+                safeDisplayClear();
+                display.setTextSize(1);
+                display.setCursor(0, 0);
+                display.println("JSON parse error");
+                display.println(err.c_str());
+                // show a snippet of payload for debugging
+                String snippet = payload;
+                if (snippet.length() > 120) snippet = snippet.substring(0, 120);
+                display.println("---");
+                display.println(snippet);
+                safeDisplayDisplay();
+            }
             showErrorOnDisplay("JSON parse error!");
         } else {
             previousPrice = lastPrice;
