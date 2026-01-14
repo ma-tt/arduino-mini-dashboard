@@ -55,7 +55,7 @@ Replace `<your_fqbn>` with your board FQBN (for example `esp32:esp32:esp32dev`) 
 
 ## Adding New Apps
 
-1. Create a new folder at the repository root named after the app.
+1. Create a new folder inside the /app directory named after the app.
 2. Add the sketch and required assets.
 3. Include a `README.md` in the app folder that lists hardware, libraries, and deploy instructions.
 
