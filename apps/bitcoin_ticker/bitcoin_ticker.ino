@@ -12,9 +12,9 @@
 const char* WIFI_SSID = "WIFI_NAME";
 const char* WIFI_PASS = "WIFI_PASSWORD";
 
-// Display / I2C defaults (common for many ESP32 dev boards)
-static const int I2C_SDA = 21; // change if your board uses different pins
-static const int I2C_SCL = 22;
+// Display / I2C defaults (original values)
+static const int I2C_SDA = 8; // original/default pins used in this project
+static const int I2C_SCL = 9;
 static const uint8_t OLED_ADDRESS = 0x3C; // change to 0x3D if your module uses that
 
 #define SCREEN_WIDTH 128

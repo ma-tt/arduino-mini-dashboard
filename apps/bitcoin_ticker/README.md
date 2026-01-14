@@ -17,8 +17,8 @@ Small Arduino/ESP sketch that fetches the current Bitcoin price (USD) from the C
 ### Hardware
 
 - ESP32-compatible board (sketch uses `WiFi.h`, `WiFiClientSecure`, `HTTPClient`, and NTP/time functions from the ESP core).
-- SSD1306-compatible 128x64 OLED (I2C).
-	- Defaults in the sketch: `I2C_SDA = 21`, `I2C_SCL = 22` (common ESP32 pins). Change these if your board uses different pins.
+ - SSD1306-compatible 128x64 OLED (I2C).
+	- Defaults in the sketch: `I2C_SDA = 8`, `I2C_SCL = 9` (original project wiring). Change these if your board uses different pins.
 	- Default I2C address: `0x3C` (change to `0x3D` in the sketch if your module uses that address).
 
 ---
