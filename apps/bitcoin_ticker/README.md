@@ -47,8 +47,8 @@ arduino-cli lib install "Adafruit GFX Library"
 - Wi‑Fi credentials:
 
 ```cpp
-const char* WIFI_SSID = "your_ssid";
-const char* WIFI_PASS = "your_password";
+const char* WIFI_SSID = "WIFI_NAME";
+const char* WIFI_PASS = "WIFI_PASSWORD";
 ```
 
 - Timezone: by default the sketch sets `TZ` to `EST5EDT` (Eastern Time with DST). Change the `setenv("TZ", ...)` line in the sketch to a POSIX TZ string for your timezone.
