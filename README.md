@@ -25,7 +25,7 @@ Example layout:
 
 ```text
 apps/
-	bitcoin_tracker/    # app folder with sketch and assets
+	bitcoin_ticker/    # app folder with sketch and assets
 	another_app/        # future app
 ```
 
@@ -33,7 +33,7 @@ Each app should contain its sketch (`.ino` or `.cpp`/`.h`) and a small `README.m
 
 ---
 
-## Deploying the `bitcoin_tracker` App
+## Deploying the `bitcoin_ticker` App
 
 Arduino IDE:
 
