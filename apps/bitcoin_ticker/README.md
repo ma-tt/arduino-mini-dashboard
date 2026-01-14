@@ -47,7 +47,6 @@ arduino-cli lib install "Adafruit GFX Library"
 - Wi‑Fi credentials:
 
 ```cpp
-// secrets.h (example — add to .gitignore)
 const char* WIFI_SSID = "your_ssid";
 const char* WIFI_PASS = "your_password";
 ```
