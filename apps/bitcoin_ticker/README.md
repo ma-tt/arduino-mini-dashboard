@@ -1,7 +1,5 @@
 ## Bitcoin Ticker (bitcoin_ticker)
 
----
-
 ### Overview
 
 Small Arduino/ESP sketch that fetches the current Bitcoin price (USD) from the CoinGecko API and shows it on a small SSD1306 OLED.
