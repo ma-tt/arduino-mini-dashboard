@@ -2,8 +2,6 @@
 
 A small collection of compact apps (Arduino/ESP sketches) that display useful information on a tiny OLED. 
 
-The repository currently includes one app: the Bitcoin tracker. Additional apps will be added into their own folders as they are created.
-
 ---
 
 ## Hardware
@@ -16,8 +14,8 @@ The repository currently includes one app: the Bitcoin tracker. Additional apps 
 ## Software & Tools
 
 - Arduino IDE — for manual editing and upload
-- arduino-cli — for building and uploading from the command line
-- Libraries (installed via Library Manager or `arduino-cli`): `ArduinoJson`, `Adafruit GFX Library`, `Adafruit SSD1306` (individual sketches list exact dependencies)
+- arduino-cli — for building and uploading from the command line (optional)
+- Libraries (individual sketches list exact dependencies)
 
 ---
 
@@ -60,13 +58,6 @@ Replace `<your_fqbn>` with your board FQBN (for example `esp32:esp32:esp32dev`) 
 1. Create a new folder at the repository root named after the app.
 2. Add the sketch and required assets.
 3. Include a `README.md` in the app folder that lists hardware, libraries, and deploy instructions.
-
----
-
-## Contributing
-
-- Open a pull request with a new app folder or improvements.
-- If a sketch requires non-standard libraries, include installation instructions or a `libraries.txt`.
 
 ---
 
