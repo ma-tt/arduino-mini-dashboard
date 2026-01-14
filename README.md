@@ -41,7 +41,7 @@ Arduino IDE:
 2. Select the correct board and serial port.
 3. Click Upload.
 
-arduino-cli (example):
+arduino-cli (optional alternative):
 
 ```bash
 cd path/to/bitcoin_ticker
